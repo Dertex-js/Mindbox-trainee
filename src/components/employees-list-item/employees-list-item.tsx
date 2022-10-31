@@ -7,15 +7,11 @@ interface EmployeesListItemProps {
   onDelete: () => void
   onToggleIncrease: () => void
   onTogglePromotion: () => void
-  onChangeSalary: (e: EventTarget) => void
+  onChangeSalary: (id: number, e: ChangeEvent<HTMLInputElement>) => void
   li: Employee
 }
 
 const EmployeesListItem: FC<EmployeesListItemProps> = ({onToggleIncrease, onTogglePromotion, onChangeSalary, onDelete, li}) => {
-  const onSalaryChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeSalary(e.target);
-  };
-
   const setCursor = (e: any) => {
     if (e.target.selectionStart) {
       const end = e.target.value.length - 1;
@@ -41,6 +37,9 @@ const EmployeesListItem: FC<EmployeesListItemProps> = ({onToggleIncrease, onTogg
     classNames += ` like`;
   }
 
+  const salaryHandle = () => {
+    onChangeSalary()
+  }
   return (
     <li className={classNames}>
       <span
@@ -56,7 +55,7 @@ const EmployeesListItem: FC<EmployeesListItemProps> = ({onToggleIncrease, onTogg
           className="list-group-item-input"
           value={set$(salary)}
           onClick={() => setCursor}
-          onChange={onSalaryChange}
+          onChange={salaryHandle}
           title="Изменить зп"
         />
         <div className="btns-group d-flex justify-content-center align-items-center">

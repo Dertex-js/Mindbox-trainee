@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {ChangeEvent, FC} from "react";
 
 import "./employees-list.css";
 import EmployeesListItem from "../employees-list-item/employees-list-item";
@@ -9,7 +9,7 @@ interface EmployeesListProps {
   onDelete: (id: number) => void
   onToggleIncrease: (id: number) => void
   onTogglePromotion: (id: number) => void
-  onChangeSalary: (id: number, e: any) => void
+  onChangeSalary: (id: number, e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const EmployeesList: FC<EmployeesListProps> = ({ data, onDelete, onToggleIncrease, onTogglePromotion, onChangeSalary }) => {
@@ -21,7 +21,7 @@ const EmployeesList: FC<EmployeesListProps> = ({ data, onDelete, onToggleIncreas
         onDelete={() => onDelete(id)}
         onToggleIncrease={() => onToggleIncrease(id)}
         onTogglePromotion={() => onTogglePromotion(id)}
-        onChangeSalary={(e: EventTarget) => onChangeSalary(id, e)}
+        onChangeSalary={onChangeSalary}
         li={li}
       />
     );

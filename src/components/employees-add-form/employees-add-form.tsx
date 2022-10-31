@@ -1,20 +1,30 @@
-import {useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import React from "react";
 import "./employees-add-form.css";
 
-const EmployeesAddForm = (props: any) => {
-  const [name, setName] = useState<string>("");
-  const [salary, setSalary] = useState<string>("");
+interface EmployeesAddFormProps {
+  onPush: (name: string, salaryStr: string) => void
+}
 
-  const onValueChange = (e: any) => {
-    setName(e.target.value);
+const EmployeesAddForm: FC<EmployeesAddFormProps> = ({onPush}) => {
+  const [name, setName] = useState<string>("");
+  const [salaryStr, setSalaryStr] = useState<string>("");
+
+  const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      setName(e.target.value);
+    }
   };
 
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    props.onPush(name, salary);
+  const onSalaryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSalaryStr(e.target.value)
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onPush(name, salaryStr);
     setName("");
-    setSalary("");
+    setSalaryStr("");
   };
 
   return (
@@ -27,15 +37,15 @@ const EmployeesAddForm = (props: any) => {
           name="name"
           placeholder="Как его зовут?"
           value={name}
-          onChange={onValueChange}
+          onChange={onNameChange}
         />
         <input
           type="number"
           className="form-controll new-post-label col-md-4 col-12"
           name="salary"
           placeholder="З/П в $?"
-          value={salary}
-          onChange={onValueChange}
+          value={salaryStr}
+          onChange={onSalaryChange}
         />
 
         <button type="submit" className="btn btn-outline-light col-md-2 col-12">

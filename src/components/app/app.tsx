@@ -20,10 +20,12 @@ const App = () => {
 
   const deleteItem = (id: number) => {
     setData(data.filter((item) => item.id !== id));
+    console.log(data)
   };
 
-  const addItem = (name: string, salary: number) => {
-    if (name && salary) {
+  const addItem = (name: string, salaryStr: string) => {
+    if (name && salaryStr) {
+      const salary = +salaryStr
       const newItem = {
         name,
         salary,
