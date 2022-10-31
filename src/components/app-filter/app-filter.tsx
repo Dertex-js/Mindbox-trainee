@@ -1,8 +1,13 @@
-import React from "react";
+import React, {FC} from "react";
 
 import "./app-filter.css";
 
-const AppFilter = ({ filter, onFilterSelect }) => {
+interface AppFilterProps {
+  filter: string
+  onFilterSelect: (filter: string) => void
+}
+
+const AppFilter: FC<AppFilterProps> = ({ filter, onFilterSelect }) => {
   const btnsData = [
     { name: "all", label: "Все сотрудники", id: 1 },
     { name: "onPromotion", label: "На повышение", id: 2 },

@@ -1,21 +1,24 @@
-import React from "react";
+import React, {ChangeEvent, FC, useState} from "react";
 import "./search-panel.css";
 
-const SearchPanel = (props) => {
+interface SearchPanelProps {
+  onUpdateSearch: (term: string) => void
+}
+
+const SearchPanel: FC<SearchPanelProps> = ({ onUpdateSearch }) => {
   const [term, setTerm] = useState("");
 
-  const onUpdateSearch = (e) => {
+  const updateHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const termValue = e.target.value;
     setTerm(termValue);
-    props.onUpdateSearch(e.target.value);
+    onUpdateSearch(e.target.value);
   };
-
   return (
     <input
       type="text"
       className="form-control search-input"
       placeholder="Найти сотрудника"
-      onChange={onUpdateSearch}
+      onChange={updateHandler}
       value={term}
     />
   );

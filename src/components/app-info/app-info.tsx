@@ -1,8 +1,13 @@
-import React from "react";
+import React, {FC} from "react";
 
 import "./app-info.css";
 
-const AppInfo = ({ amount, withIncrease }) => {
+interface AppInfoProps {
+  amount: number
+  withIncrease: number
+}
+
+const AppInfo: FC<AppInfoProps> = ({ amount, withIncrease }) => {
   return (
     <div className="app-info">
       <h1>Учет сотрудников в компании N</h1>

@@ -1,28 +1,36 @@
-import React from "react";
+import React, {ChangeEvent, FC} from "react";
 
 import "./employees-list-item.css";
+import Employee from "../types";
 
-const EmployeesListItem = (props) => {
-  const onSalaryChange = (e) => {
-    props.onChangeSalary(e.target);
+interface EmployeesListItemProps {
+  onDelete: () => void
+  onToggleIncrease: () => void
+  onTogglePromotion: () => void
+  onChangeSalary: (e: EventTarget) => void
+  li: Employee
+}
+
+const EmployeesListItem: FC<EmployeesListItemProps> = ({onToggleIncrease, onTogglePromotion, onChangeSalary, onDelete, li}) => {
+  const onSalaryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChangeSalary(e.target);
   };
 
-  const setCursor = (e) => {
+  const setCursor = (e: any) => {
     if (e.target.selectionStart) {
-      var end = e.target.value.length - 1;
+      const end = e.target.value.length - 1;
       e.target.setSelectionRange(end, end);
       e.target.focus();
     }
   };
-  const set$ = (salary) => {
+  const set$ = (salary: number) => {
     if (salary.toString().indexOf(`$`) === -1) {
       return salary + `$`;
     }
     return salary;
   };
 
-  const { name, salary, increase, promotion, onDelete, onTogglePromotion, onToggleIncrease } =
-    props;
+  const { name, salary, increase, promotion } = li;
 
   let classNames = "list-group-item d-flex justify-content-between row g-0";
 
@@ -47,7 +55,7 @@ const EmployeesListItem = (props) => {
           type="text"
           className="list-group-item-input"
           value={set$(salary)}
-          onClick={setCursor}
+          onClick={() => setCursor}
           onChange={onSalaryChange}
           title="Изменить зп"
         />

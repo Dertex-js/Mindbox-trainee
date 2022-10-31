@@ -1,10 +1,10 @@
-import { useState } from "react";
+import {useState} from "react";
 import React from "react";
 import "./employees-add-form.css";
 
 const EmployeesAddForm = (props: any) => {
-  const [name, setName] = useState("");
-  const [salary, setSalary] = useState("");
+  const [name, setName] = useState<string>("");
+  const [salary, setSalary] = useState<string>("");
 
   const onValueChange = (e: any) => {
     setName(e.target.value);
