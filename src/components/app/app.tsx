@@ -13,7 +13,7 @@ import "./app.css";
 
 const App = () => {
   let maxId = useRef(4);
-  const [data, setData] = useState([
+  const [data, setData] = useState<Employee[]>([
     { name: "John S.", salary: 800, increase: false, promotion: true, id: 1 },
     { name: "Alex M.", salary: 2500, increase: false, promotion: false, id: 2 },
     { name: "Carl W.", salary: 15000, increase: true, promotion: false, id: 3 },
@@ -21,11 +21,11 @@ const App = () => {
   const [term, setTerm] = useState("");
   const [filter, setFilter] = useState("all");
 
-  const deleteItem = (id) => {
+  const deleteItem = (id: number) => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const addItem = (name, salary) => {
+  const addItem = (name: string, salary: number) => {
     if (name && salary) {
       const newItem = {
         name,
@@ -38,7 +38,7 @@ const App = () => {
     }
   };
 
-  const onToggleIncrease = (id) => {
+  const onToggleIncrease = (id: number) => {
     setData(
       data.map((item) => {
         if (item.id === id) {
@@ -49,7 +49,7 @@ const App = () => {
     );
   };
 
-  const onTogglePromotion = (id) => {
+  const onTogglePromotion = (id: number) => {
     setData(
       data.map((item) => {
         if (item.id === id) {
@@ -60,11 +60,11 @@ const App = () => {
     );
   };
 
-  const onUpdateSearch = (term) => {
+  const onUpdateSearch = (term: string) => {
     setTerm(term);
   };
 
-  const onFilterSelect = (filter) => {
+  const onFilterSelect = (filter: string) => {
     setFilter(filter);
   };
 
