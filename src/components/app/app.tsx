@@ -1,4 +1,7 @@
 import { useState, useRef } from "react";
+import React from "react";
+
+import Employee from "../types";
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";
@@ -17,8 +20,6 @@ const App = () => {
   ]);
   const [term, setTerm] = useState("");
   const [filter, setFilter] = useState("all");
-
-  console.log({ data });
 
   const deleteItem = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -131,6 +132,4 @@ const App = () => {
 export default App;
 
 //Объединить методы
-//Написать адаптив
-//Залить билд на хероку
 //Избежать проблемы props drilling через useContext

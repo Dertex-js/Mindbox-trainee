@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import "./search-panel.css";
 
 const SearchPanel = (props) => {
@@ -10,7 +10,15 @@ const SearchPanel = (props) => {
     props.onUpdateSearch(e.target.value);
   };
 
-  return <input type="text" className="form-control search-input" placeholder="Найти сотрудника" onChange={onUpdateSearch} value={term} />;
+  return (
+    <input
+      type="text"
+      className="form-control search-input"
+      placeholder="Найти сотрудника"
+      onChange={onUpdateSearch}
+      value={term}
+    />
+  );
 };
 
 export default SearchPanel;

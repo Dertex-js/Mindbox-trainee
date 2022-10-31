@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./employees-list.css";
 import EmployeesListItem from "../employees-list-item/employees-list-item";
 
