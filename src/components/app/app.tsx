@@ -94,8 +94,6 @@ const App = () => {
     setData(
       data.map((item) => {
         if (item.id === id) {
-          // TODO Проверить
-          // item.salary = e.value;
           item.salary = +e.target.value;
           return item;
         }
